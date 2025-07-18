@@ -7,7 +7,7 @@ with open("static/style.css") as f:
 
 
 # Load the trained model
-model = joblib.load("model.pkl")
+model = joblib.load("stress_model.pkl")
 
 st.set_page_config(page_title="Stress Level Predictor", layout="centered")
 st.title("🧠 Student Stress Level Predictor")
