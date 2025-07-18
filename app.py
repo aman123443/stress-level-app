@@ -1,12 +1,22 @@
 import streamlit as st
 import joblib
 import numpy as np
+# Inject custom CSS
+with open("static/style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 # Load the trained model
 model = joblib.load("model.pkl")
 
 st.set_page_config(page_title="Stress Level Predictor", layout="centered")
 st.title("🧠 Student Stress Level Predictor")
+st.markdown("""
+<div style='background-color:#eaf4ff;padding:15px;border-radius:10px;margin-bottom:20px'>
+    <h2 style='color:#004085;'>🎓 Welcome to the Stress Level Predictor</h2>
+    <p>This app helps students understand their mental well-being using AI.</p>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("Enter values for the following parameters (1–10):")
 
