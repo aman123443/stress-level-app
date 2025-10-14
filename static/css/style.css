@@ -1,0 +1,331 @@
+/* --- General & Body --- */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    color: #333;
+     background-image: url('https://htmlcolors.com/gradients-images/41-light-green-gradient.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* --- Login Page --- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.auth-card {
+    background: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00796b;
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #00796b;
+    box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
+}
+
+.auth-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #00796b;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #006054;
+}
+
+.btn-secondary {
+    background-color: #eee;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #ddd;
+}
+
+.flash-error {
+    color: red;
+    margin-top: 1rem;
+}
+.flash-success {
+    color: green;
+    margin-top: 1rem;
+}
+/* --- Professional Animations --- */
+
+/* Initial state for elements that will animate on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+
+/* The state for elements once they become visible */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for child elements */
+/* We will apply this delay to each option-card and review-card */
+.option-card, .review-card {
+    transition-delay: var(--delay, 0s);
+}
+
+/* Enhanced hover effect for cards */
+.option-card:hover, .review-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+/* Keyframes for the initial hero section fade-in on page load */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply the page-load animation to the hero elements */
+.hero-section h1 {
+    animation: fadeInDown 1s ease-out 0.2s backwards;
+}
+
+.hero-section p {
+    animation: fadeInDown 1s ease-out 0.4s backwards;
+}
+
+/* Subtle animation for the review form */
+.review-form-container {
+    transition-delay: 0.2s; /* Give it a slight delay after the cards appear */
+}
+
+
+/* --- Home Page & Navbar --- */
+.home-body {
+    background-image: url('https://t3.ftcdn.net/jpg/04/34/62/62/360_F_434626246_1fM6fPUKTUnkmeBsVgQTta9IIb8ZfM5W.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #9de2da;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.nav-user {
+    font-weight: 600;
+     color: #333;
+}
+
+.logout-link {
+    margin-left: 1rem;
+    color:#333;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* --- Main Content --- */
+.main-container {
+    padding: 2rem 5%;
+}
+
+.hero-section {
+    text-align: center;
+    color:  #f5f7f6;
+    padding: 4rem 1rem;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    animation: fadeIn 2s ease-out;
+}
+
+.hero-section h1 {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Options Section --- */
+.options-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.option-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px; /* smooth corners */
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.option-card:hover {
+     transform: translateY(-12px) scale(1.05); /* lift and slight zoom */
+    box-shadow: 0 15px 30px rgba(0, 36, 32, 0.4); /* softer shadow with transparency */
+    
+}
+
+.option-card h3 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.option-card h2 {
+    margin: 0.5rem 0;
+    color: #00796b;
+}
+
+/* --- Review Section --- */
+.review-section {
+    background: #9de2da;
+    padding: 3rem;
+    border-radius: 12px;
+    margin-top: 4rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.review-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.review-card {
+    background: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #00796b;
+}
+
+.review-content {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.review-author {
+    font-weight: 600;
+    color: #333;
+    text-align: right;
+}
+
+.review-form-container {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+}
+
+.review-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+

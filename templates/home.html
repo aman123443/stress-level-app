@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWell - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="home-body">
+    <div class="navbar">
+        <div class="logo">MindWell</div>
+        <div class="nav-user">
+            Welcome, {{ username }}!
+            <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+        </div>
+    </div>
+
+    <main class="main-container">
+        <section class="hero-section">
+            <h1>Your Mental Wellness Hub</h1>
+            <p>Tools and support for a healthier, less stressful life.</p>
+        </section>
+
+        <section class="options-section">
+            <a href="{{ url_for('predictor') }}" class="option-card">
+                <h3>🧠</h3>
+                <h2>Stress Predictor</h2>
+                <p>Analyze your stress levels with our ML-powered tool.</p>
+            </a>
+            <a href="{{ url_for('advisor') }}" class="option-card">
+                <h3>🤖</h3>
+                <h2>AI Health Advisor</h2>
+                <p>Chat with our AI for personalized advice and support.</p>
+            </a>
+        </section>
+
+        <section class="review-section">
+            <h2>What Our Users Say</h2>
+            <div class="reviews-grid">
+                {% if reviews %}
+                    {% for review in reviews %}
+                    <div class="review-card">
+                        <p class="review-content">"{{ review.content }}"</p>
+                        <small class="review-author">- {{ review.author }} on {{ review.created_at.strftime('%b %d, %Y') }}</small>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Be the first to leave a review!</p>
+                {% endif %}
+            </div>
+
+            <div class="review-form-container">
+                <h3>Share Your Experience</h3>
+                <form method="POST" action="{{ url_for('home') }}" class="review-form">
+                    <textarea name="review_content" placeholder="Tell us what you think..." required></textarea>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
