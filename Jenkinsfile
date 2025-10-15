@@ -2,13 +2,13 @@ pipeline {
     agent any // Specifies where the pipeline will execute
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Get the code from your Git repository
-                git 'https://github.com/your-username/your-repo.git'
-                echo 'Code checked out successfully.'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         // Get the code from your Git repository
+        //         git 'https://github.com/aman123443/stress-level-app.git'
+        //         echo 'Code checked out successfully.'
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
