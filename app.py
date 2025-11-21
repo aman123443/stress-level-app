@@ -53,8 +53,9 @@ app.secret_key = os.environ.get("FLASK_SECRET", os.urandom(24))
 # --- DATABASE SETUP (PostgreSQL) ---
 DATABASE_URL = os.environ.get(
     "DATABASE_URL",
-    "postgresql+psycopg2://postgres:2003@localhost:5432/StudentStressLevelPrediction"
+    "sqlite:///stress_app.db"
 )
+
 engine = create_engine(DATABASE_URL, future=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
