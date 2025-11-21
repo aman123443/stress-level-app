@@ -178,11 +178,13 @@ body {
 
 /* --- Home Page & Navbar --- */
 .home-body {
-    background-image: url('https://t3.ftcdn.net/jpg/04/34/62/62/360_F_434626246_1fM6fPUKTUnkmeBsVgQTta9IIb8ZfM5W.jpg');
+    /* background-image: url('https://t3.ftcdn.net/jpg/04/34/62/85/360_F_434628580_vBbODMN0qhtkFzA94ppIqhPcB9Pbq3gv.jpg'); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
+
+
 
 .navbar {
     display: flex;

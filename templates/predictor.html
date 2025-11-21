@@ -1,202 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stress Predictor - MindWel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stress Predictor - MindWell</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
   <style>
-    /* Global */
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg,#00796b,#4a968d);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    a { text-decoration: none; color: inherit; }
-
-    /* Navbar */
-    .navbar {
-      width: 90%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      margin: 1rem 0;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-    }
-    .navbar .logo { font-size: 1.5rem; font-weight: 700; }
-    .nav-links a { margin-left: 1.5rem; font-weight: 500; }
-    .nav-links .active { font-weight: 700; border-bottom: 2px solid #fff; }
-    .user-profile { display: flex; gap: 1rem; align-items: center; }
-
-    /* Predictor Card */
-    .predictor-container { width: 90%; max-width: 800px; margin-bottom: 2rem; }
-    .predictor-card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .title { font-size: 2rem; margin: 0; text-align: center; }
-    .subtitle { text-align: center; margin-top: 0.5rem; color: #e0e0e0; }
-
-    /* Sliders */
-    .slider-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-    .slider-group { display: flex; flex-direction: column; gap: 0.3rem; }
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 10px;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.3);
-      outline: none;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px; height: 20px;
-      background: #ffb347;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    /* Button */
-    .btn-primary-full {
-      background: #ffb347;
-      color: #000;
-      padding: 0.8rem 1.2rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn-primary-full:hover { background: #ffcc70; }
-
-    /* Results */
-    .results-card {
-      background: rgba(0,0,0,0.25);
-      border-radius: 15px;
-      padding: 1.5rem;
-      animation: fadeIn 0.6s ease forwards;
-    }
-    .stress-level-result {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0.5rem 0;
-      text-align: center;
-    }
-    .level-low { color: #00ff99; }
-    .level-medium { color: #ffeb3b; }
-    .level-high { color: #ff5252; }
-
-    /* Probabilities bars */
-    .progress-bars { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
-    .progress { background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
-    .progress span {
-      display: block;
-      height: 20px;
-      background: #ffb347;
-      text-align: right;
-      padding-right: 0.5rem;
-      line-height: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      transition: width 0.5s ease;
-    }
-
-    /* Recommendations */
-    .recommendations ul { padding-left: 1.2rem; }
-    .recommendations li { margin-bottom: 0.5rem; }
-
-    /* Animations */
-    @keyframes fadeIn { 0% {opacity:0; transform:translateY(10px);} 100% {opacity:1; transform:translateY(0);} }
+    body { margin:0; font-family:'Inter',sans-serif; background:linear-gradient(135deg,#00796b,#4a968d); color:#fff; min-height:100vh; display:flex; flex-direction:column; align-items:center;}
+    .predictor-container { width:90%; max-width:900px; margin:2rem 0; }
+    .predictor-card { background: rgba(255,255,255,0.08); padding:2rem; border-radius:16px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .slider-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1rem; }
+    input[type="range"]{ -webkit-appearance:none; width:100%; height:10px; border-radius:6px; background:rgba(255,255,255,0.2);}
+    .btn-primary-full{ background:#ffb347; color:#000; padding:0.8rem 1.2rem; border-radius:12px; border:0; font-weight:700; cursor:pointer;}
+    .results-card{ background: rgba(0,0,0,0.25); padding:1rem; margin-top:1rem; border-radius:12px;}
+    label{ font-weight:600; display:block; margin-bottom:0.3rem;}
+    input[type="text"], textarea{ width:100%; padding:0.5rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:#fff; }
+    input[type="text"]::placeholder, textarea::placeholder{ color: #ddd; }
+    .small-muted { opacity:0.85; font-size:0.95rem; }
+    .param-list { margin:0.5rem 0 0 1rem; }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo"><a href="{{ url_for('home') }}">🌿 MindWell</a></div>
-    <div class="nav-links">
-      <a href="{{ url_for('predictor') }}" class="active">Stress Predictor</a>
-      <a href="{{ url_for('advisor') }}">AI Advisor</a>
-    </div>
-    <div class="user-profile">
-      <div class="profile-icon">👤 {{ username }}</div>
-      <div class="logout-button"><a href="{{ url_for('logout') }}">Logout</a></div>
-    </div>
-  </div>
+ <div class="predictor-container">
+  <div class="predictor-card">
+    <h1>📊 Stress Level Analysis</h1>
+    <p class="small-muted">Logged in as: <strong>{{ username }}</strong></p>
 
-  <!-- Main Content -->
-  <div class="predictor-container">
-    <div class="predictor-card">
-      <h1 class="title">📊 Stress Level Analysis</h1>
-      <p class="subtitle">Adjust the sliders below to reflect your current state.</p>
+    <form action="{{ url_for('predictor') }}" method="POST">
+      <input type="hidden" name="patient_name" value="{{ username }}">
 
-      <form action="{{ url_for('predictor') }}" method="POST">
-        <div class="slider-grid">
-          {% for feature in features %}
-          <div class="slider-group">
-            <label for="{{ feature }}">{{ feature.replace('_', ' ').title() }}</label>
-            <input type="range" id="{{ feature }}" name="{{ feature }}" min="1" max="10" value="{{ request.form.get(feature,5) }}">
-            <span id="{{ feature }}-value">{{ request.form.get(feature,5) }}</span>
-          </div>
-          {% endfor %}
-        </div>
-        <button type="submit" class="btn-primary-full">Analyze My Stress</button>
-      </form>
-
-      {% if prediction %}
-      <div id="results" class="results-card">
-        <h2>✅ Analysis Complete</h2>
-        <p class="stress-level-text">Your Predicted Stress Level:</p>
-        <p class="stress-level-result level-{{ prediction.level | lower }}">{{ prediction.level }}</p>
-
-    <h4>Prediction Certainty:</h4>
-<div class="progress-bars">
- <!-- Option 1: Using quotes around width -->
-<span style="width: '{{ prediction.probabilities.Low }}%';">Low</span>
-<span style="width: '{{ prediction.probabilities.Medium }}%';">Medium</span>
-<span style="width: '{{ prediction.probabilities.High }}%';">High</span>
-
-</div>
-
-        <div class="recommendations">
-          <h4>🌱 Personalized Recommendations</h4>
-          <ul>
-            {% for rec in prediction.recommendations %}
-              <li><strong>{{ rec.factor.replace('_', ' ').title() }}:</strong> {{ rec.tip }}</li>
-            {% endfor %}
-            {% if not prediction.recommendations %}
-              <li>👏 Your inputs are well-balanced. Keep maintaining your healthy habits!</li>
-            {% endif %}
-          </ul>
+      <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+        <div style="flex:1;">
+          <label for="symptoms">Symptoms (short)</label>
+          <input type="text" id="symptoms" name="symptoms" placeholder="e.g., trouble sleeping, anxious" value="{{ symptoms_short }}">
         </div>
       </div>
-      {% endif %}
+
+      <div style="margin-bottom:1rem;">
+        <label for="symptoms_long">Symptoms (details, optional)</label>
+        <textarea id="symptoms_long" name="symptoms_long" rows="3" placeholder="Provide more details (optional)">{{ symptoms_long }}</textarea>
+      </div>
+
+      <div class="slider-grid">
+        {% for feature in features %}
+        <div>
+          <label for="{{ feature }}">{{ feature.replace('_',' ').title() }}</label>
+          <input type="range" id="{{ feature }}" name="{{ feature }}" min="1" max="10" value="{{ request.form.get(feature,5) }}">
+          <div style="display:flex; justify-content:space-between; font-size:0.9rem; opacity:0.9;">
+            <small>1</small><small id="{{ feature }}-value">{{ request.form.get(feature,5) }}</small><small>10</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div style="margin-top:1rem;">
+        <button type="submit" class="btn-primary-full">Analyze My Stress</button>
+      </div>
+    </form>
+
+    {% if prediction %}
+    <div id="results" class="results-card">
+      <h2>✅ Analysis Complete</h2>
+      <p>Your Predicted Stress Level:</p>
+      <p style="font-size:1.6rem; font-weight:800; margin:0.2rem 0;" class="level-{{ prediction.level | lower }}">{{ prediction.level }}</p>
+
+      <div style="margin-top:0.5rem;">
+        <strong>Prediction probabilities:</strong>
+        <div class="small-muted">Low: {{ prediction.probabilities.Low|round(1) }}% — Medium: {{ prediction.probabilities.Medium|round(1) }}% — High: {{ prediction.probabilities.High|round(1) }}%</div>
+      </div>
+
+      <div class="recommendations" style="margin-top:1rem;">
+        <h4>🌱 Personalized Recommendations</h4>
+        <ul>
+          {% if prediction.recommendations %}
+            <li><strong>Parameters needing attention (High / risky):</strong>
+              <ul class="param-list">
+                {% for rec in prediction.recommendations %}
+                  <li><strong>{{ rec.factor.replace('_',' ').title() }} ({{ rec.value }})</strong>: {{ rec.tip }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endif %}
+
+          {% if prediction.maintain %}
+            <li><strong>Parameters to maintain (Low-risk):</strong>
+              <ul class="param-list">
+                {% for m in prediction.maintain %}
+                  <li><strong>{{ m.factor.replace('_',' ').title() }} ({{ m.value }})</strong>: {{ m.tip }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endif %}
+
+          {% if not prediction.recommendations and not prediction.maintain %}
+            <li>👏 Your inputs are well-balanced. Keep it up!</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Download PDF form: server supplies recommendations_packed -->
+      <form action="{{ url_for('download_pdf') }}" method="POST" style="margin-top:1rem;">
+          <input type="hidden" name="patient_name" value="{{ username }}">
+          <input type="hidden" name="symptoms" value="{{ request.form.get('symptoms','') }}">
+          <input type="hidden" name="symptoms_long" value="{{ request.form.get('symptoms_long','') }}">
+          <input type="hidden" name="prediction" value="{{ prediction.level }}">
+          <input type="hidden" name="recommendations" value="{{ recommendations_packed }}">
+          <button type="submit" class="btn-primary-full">📄 Download PDF Report</button>
+      </form>
+
     </div>
+    {% endif %}
   </div>
+ </div>
 
-  <script>
-    document.querySelectorAll('input[type="range"]').forEach(slider => {
-      const valueSpan = document.getElementById(`${slider.id}-value`);
-      slider.addEventListener('input', () => valueSpan.textContent = slider.value);
-    });
-  </script>
-
+ <script>
+  document.querySelectorAll('input[type="range"]').forEach(slider => {
+    const valueSpan = document.getElementById(`${slider.id}-value`);
+    slider.addEventListener('input', () => valueSpan.textContent = slider.value);
+  });
+ </script>
 </body>
 </html>
