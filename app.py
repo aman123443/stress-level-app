@@ -483,6 +483,6 @@ def download_pdf():
         download_name="mindwell_report_simple.pdf",
         mimetype="application/pdf"
     )
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False, host="127.0.0.1", port=5000)
+
